@@ -13,7 +13,7 @@
 | Kriter                   | Detay                                                      |
 | :----------------------- | :--------------------------------------------------------- |
 | **Öğrenci Adı Soyadı**   | Ezel Balım Atik                                            |
-| **Üniversite & Bölüm**   | İstinye Üniversitesi - Bilgi Güvenliği Teknolojisi         |
+| **Üniversite & Bölüm**   | İstinye Üniversitesi - Bilişim Güvenliği Teknolojisi         |
 | **Ders**                 | Güvenli Web Yazılımı Geliştirme                            |
 | **Analiz Edilecek Repo** | [Appwrite (v1.x)](https://github.com/appwrite/appwrite)    |
 | **Seçilen Senaryo**      | **Standart Senaryo 1: Authentication (Pasaport Kontrolü)** |
