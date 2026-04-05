@@ -1,21 +1,16 @@
-# ⚙️ Adım 3: CI/CD Pipeline ve İş Akışları Analizi
+# ⚙️ Adım 3: CI/CD Pipeline ve Otomatik Güvenlik Analizi (SAST)
 
-## 🎯 Seçilen İş Akışı: .github/workflows/tests.yml
-Appwrite'ın kod kalitesini ve güvenliğini korumak için kullandığı ana otomasyon dosyası incelenmiştir.
+## 🎯 Seçilen İş Akışı: CodeQL (Static Analysis Results)
+Appwrite projesinin kaynak kod güvenliğini sağlamak için kullandığı **CodeQL** mekanizması incelenmiştir. Bu dosya, bir "Güvenlik Mimarı" için projenin en kritik savunma hattıdır.
 
-### 🛠️ Adım Adım İşleyiş:
-1. **Ortam Hazırlığı:** GitHub Actions üzerinde geçici bir Ubuntu makinesi ayağa kaldırılır.
-2. **Bağımlılıkların Yüklenmesi:** `composer install` ve `npm install` ile projenin çalışması için gereken tüm kütüphaneler çekilir.
-3. **Statik Kod Analizi (Linting):** Kodun standartlara uygunluğu ve bilinen güvenlik açıklarına karşı taranması sağlanır.
-4. **Unit & Integration Tests:** Uygulamanın her bir modülü (Auth, Database, Storage) Docker konteynerları içerisinde izole bir şekilde test edilir.
+### 🛠️ Teknik Analiz (CodeQL Workflow):
+- **Kaynak Dosya:** [github.com/appwrite/appwrite/blob/master/.github/workflows/codeql.yml](https://github.com/appwrite/appwrite/blob/master/.github/workflows/codeql.yml)
+- **Yetki İlkesi:** `permissions: contents: read` ve `security-events: write` tanımlanmıştır. Pipeline sadece gerekli kodları okur ve sadece güvenlik raporlarını yazar.
+- **SAST Taraması:** `Initialize CodeQL` ve `Perform CodeQL Analysis` adımları, her "Push" anında gizli zafiyetleri otomatik olarak tarar.
 
-## 🔴 KRİTİK SORU: "Webhook" Nedir ve Ne İşe Yarar?
-**Soru:** Webhook nedir ve bu proje özelinde (veya genel CI/CD akışında) tam olarak ne işe yarar?
+## 🔴 KRİTİK SORU: Webhook ve CI/CD İlişkisi
+**Soru:** Webhook nedir ve bu proje özelinde ne işe yarar?
 
-**Yanıt:** Webhook, bir sistemde bir olay (event) gerçekleştiğinde, bu olayın detaylarını HTTP üzerinden başka bir sisteme "anlık" olarak bildiren bir mekanizmadır. 
+**Yanıt:** Webhook, GitHub ile CodeQL tarayıcısı arasındaki "anlık haberci"dir. Geliştirici kodu gönderdiği (push) anda GitHub bir Webhook tetikler ve bu analizi başlatır. Bu otomasyon sayesinde insan hatası devre dışı bırakılır.
 
-- **CI/CD Akışında:** Bir geliştirici koda "Push" attığında, GitHub bir **Webhook** fırlatarak CI sunucusuna (GitHub Actions) "Yeni bir kod geldi, hemen testleri başlat!" sinyali gönderir.
-- **Appwrite Özelinde:** Appwrite içinde bir kullanıcı oluşturulduğunda (`user.create`), Appwrite bunu senin belirlediğin bir URL'e (mesela bir Discord botu veya ödeme sistemi) Webhook ile bildirir.
-- **Güvenlik Notu:** Webhook'lar manipüle edilebilir. Appwrite, bu isteklerin gerçekten kendisinden geldiğini kanıtlamak için `X-Appwrite-Webhook-Signature` başlığı ile imzalama yapar. Bu, **Bütünlük (Integrity)** kontrolü sağlar.
-
-**Sonuç:** CI/CD pipeline'ı, "Tedarik Zinciri Saldırılarını" (Supply Chain Attacks) engellemek için kodun her adımda otomatik olarak denetlenmesini sağlar.
+**Sonuç:** Appwrite, "DevSecOps" prensiplerini uygulayarak güvenlik testlerini iş akışının bir parçası yapmıştır.
