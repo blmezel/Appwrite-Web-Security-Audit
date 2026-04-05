@@ -1,0 +1,9 @@
+version: '3'
+services:
+  appwrite:
+    image: appwrite/appwrite:latest
+    networks:
+      - gateway
+networks:
+  gateway:
+    driver: bridge
