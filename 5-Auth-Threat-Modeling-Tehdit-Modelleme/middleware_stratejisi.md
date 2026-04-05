@@ -1,19 +1,15 @@
-# 👮 Middleware Hiyerarşisi: Zabıta ve Polis Analojisi
+# 👮 Middleware Hiyerarşisi: Zabıta ve Polis Stratejisi
 
-Pasaport doğrulama sistemi gibi yüksek kritiklikteki sistemlerde, sunucu kaynaklarını verimli kullanmak ve güvenliği kademelendirmek için "Zabıta ve Polis" stratejisi uygulanmıştır.
+Pasaport doğrulama sistemi gibi yüksek kritiklikteki sistemlerde, sunucu kaynaklarını verimli kullanmak ve "DoS" (Denial of Service) saldırılarını engellemek için **"Zabıta ve Polis"** mimari hiyerarşisi uygulanmıştır.
 
-### 🛡️ 1. Katman: Zabıta (Rate Limiter / Edge Security)
-Sistemin kapısında duran ilk koruma katmanıdır. 
-- **Görevi:** Henüz ağır kimlik doğrulama kontrollerine girmeden, gelen isteğin hızını ve miktarını kontrol eder.
-- **Teknik Uygulama:** Appwrite ve Nginx üzerindeki **Rate Limiting** mekanizmasıdır. Eğer bir IP adresinden saniyede 100 pasaport sorgusu geliyorsa, "Zabıta" bu trafiği sunucuyu yormadan kapıda reddeder.
+### 🛡️ 1. Katman: Zabıta (Rate Limiter - Edge Security)
+- **Görevi:** Henüz ağır kimlik doğrulama kontrollerine girmeden, gelen isteğin miktarını kontrol eder.
+- **Kısa Yol Haritası Uygulaması:** "Basit rate limitleri en başa koy." 
+- **Teknik Detay:** Appwrite önündeki bu katman, bir hacker saniyede binlerce istek attığında pasaport veritabanını yormadan isteği doğrudan reddeder.
 
-### 🚔 2. Katman: Polis (Auth & Permission Middleware)
-Zabıta süzgecinden geçen "meşru" trafiği karşılayan ağır güvenlik katmanıdır.
-- **Görevi:** İsteğin içindeki **JWT (JSON Web Token)** verisini, imza doğruluğunu ve kullanıcının pasaport verisini görmeye yetkili olup olmadığını (ACL) kontrol eder.
-- **Teknik Uygulama:** Appwrite Auth Service. Bu katman sunucu kaynağı harcar (CPU/Database), bu yüzden sadece Zabıta'dan geçen "temiz" istekler buraya ulaşır.
+### 🚔 2. Katman: Polis (Authentication & Authorization)
+- **Görevi:** Zabıta süzgecinden geçen temiz isteğin içindeki **JWT (Token)** verisini ve yetkisini kontrol eder.
+- **Kısa Yol Haritası Uygulaması:** "Ağır güvenlik kontrollerini sona koy."
+- **Teknik Detay:** Şifre çözme ve veritabanı sorgulama gibi "ağır" işlemler sadece meşru (spam olmayan) kullanıcılar için çalıştırılır.
 
-### 📝 3. Katman: Şahit (Logging Middleware)
-- **Görevi:** Tüm süreci kayıt altına alır.
-- **Teknik Uygulama:** Appwrite Audit Logs. Kim, ne zaman, hangi pasaport verisine erişmeye çalıştı? Başarılı mı yoksa başarısız mı? Her şey "Forensics" analizi için kaydedilir.
-
-**Sonuç:** Bu hiyerarşi sayesinde, kaba kuvvet (Brute-force) saldırıları sunucunun "Polis" katmanını yormadan "Zabıta" tarafından bertaraf edilir.
+**Sonuç:** Bu hiyerarşi, sunucunun kaynak yönetimini optimize ederken, aynı zamanda sistemi kaba kuvvet saldırılarına karşı %100 dayanıklı hale getirir.
