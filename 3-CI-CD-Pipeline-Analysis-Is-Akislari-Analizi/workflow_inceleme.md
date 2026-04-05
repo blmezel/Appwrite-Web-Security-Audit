@@ -1,8 +1,5 @@
-# ⚙️ CI/CD Güvenlik Analizi Notları
-
-- **İncelenen Dosya:** .github/workflows/tests.yml
-- **Kritik Bulgular:** GitHub Actions üzerinde çalışan CodeQL taraması, her push anında SAST (Statik Analiz) yaparak zafiyet taraması yapar.
-- **Webhook İmzaları:** Sistem, dışarıdan gelen tetikleyicilerin doğruluğunu X-Appwrite-Webhook-Signature başlığı ile kontrol eder.
+# ⚙️ CI/CD ve Dosya Yapısı Analizi
+Projenin GitHub üzerindeki iş akışları ve dosya hiyerarşisi incelenerek 'Least Privilege' (En az yetki) kuralına uygunluğu denetlenmiştir.
 
 ## 📸 Terminal Kanıtı
-![Pipeline Analizi](https://raw.githubusercontent.com/blmezel/Appwrite-Web-Security-Audit/main/images/ss3.png)
+![Dosya Yapısı](../images/ss3.png)
