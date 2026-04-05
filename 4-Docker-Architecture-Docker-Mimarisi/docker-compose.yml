@@ -7,3 +7,4 @@ services:
 networks:
   gateway:
     driver: bridge
+# Güvenlik Denetimi Amaçlı Örnek Yapılandırma
