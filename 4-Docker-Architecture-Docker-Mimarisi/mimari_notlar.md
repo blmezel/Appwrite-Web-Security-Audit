@@ -1,5 +1,5 @@
 # 🐋 Docker Mimarisi ve İzolasyon
-Mikroservislerin Docker üzerindeki segmentasyonu ve ağ güvenliği denetlenmiştir. Yapılan tüm işlemler Git geçmişi ile kayıt altına alınmıştır.
+Appwrite mikroservis mimarisi, veritabanlarını dış dünyaya kapatarak 'Internal Bridge Network' üzerinde koşturur. Bu, doğrudan SQL enjeksiyon riskini minimize eden güvenli bir mimari yaklaşımdır.
 
-## 📸 İşlem Geçmişi Kanıtı
-![Genel Analiz](../images/ss4.png)
+## 📸 Terminal Kanıtı
+![Docker Kontrolü](../images/ss4.png)

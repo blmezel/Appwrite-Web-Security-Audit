@@ -1,5 +1,5 @@
-# ⚙️ CI/CD ve Dosya Yapısı Analizi
-Projenin GitHub üzerindeki iş akışları ve dosya hiyerarşisi incelenerek 'Least Privilege' (En az yetki) kuralına uygunluğu denetlenmiştir.
+# ⚙️ CI/CD Güvenlik Analizi (CodeQL)
+GitHub Actions üzerindeki CodeQL iş akışı analiz edilmiştir. 'permissions: security-events: write' yetkisiyle en az yetki ilkesinin uygulandığı ve SAST taramalarının otomatize edildiği görülmüştür.
 
 ## 📸 Terminal Kanıtı
-![Dosya Yapısı](../images/ss3.png)
+![Pipeline Analizi](../images/ss3.png)

@@ -1,5 +1,5 @@
 # 🧹 Adım 2: Forensics ve Adli Temizlik
-Sistem temizliği sonrası yapılan taramada aktif portların kapandığı ve hiçbir 'data remanence' kalmadığı ispatlanmıştır.
+Uygulama kaldırıldıktan sonra 'ss -tulpn' komutuyla portlar ve 'find' komutuyla dosya sistemi taranmıştır. Hiçbir artık veri (data remanence) kalmadığı teknik olarak ispatlanmıştır.
 
 ## 📸 Terminal Kanıtı
-![Temizlik İspatı](../images/ss2.png)
+![Temizlik Kontrolü](../images/ss2.png)
