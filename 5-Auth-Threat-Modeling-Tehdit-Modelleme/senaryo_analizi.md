@@ -1,3 +1,5 @@
 # 🔐 Tehdit Modelleme: Pasaport Kontrolü (Authentication)
-Pasaport verilerine erişim JWT (JSON Web Token) ile korunmaktadır. Yapılan tüm denetim süreci profesyonel siber güvenlik standartlarında tamamlanmıştır.
+Pasaport verileri üzerinde JWT zafiyet analizleri yapılmıştır. Projenin tüm denetim süreci başarıyla tamamlanmıştır.
 
+## 📸 Final Analiz Kanıtı
+![Auth Analizi](../images/ss1.png)

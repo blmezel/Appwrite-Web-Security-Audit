@@ -1,3 +1,5 @@
-# ⚙️ CI/CD Güvenlik Analizi (CodeQL)
-GitHub Actions üzerindeki CodeQL iş akışı analiz edilmiştir. SAST taramalarının otomatize edildiği ve en az yetki ilkesinin uygulandığı görülmüştür.
+# ⚙️ CI/CD Güvenlik Analizi
+Appwrite'ın dosya yapısı ve bağımlılıkları incelenerek 'Least Privilege' ilkesine uygunluğu denetlenmiştir.
 
+## 📸 Terminal Kanıtı
+![Pipeline Analizi](../images/ss3.jpg)
