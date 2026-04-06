@@ -189,7 +189,6 @@ Bu proje sayesinde:
 
 Bu çalışma, sadece teorik değil; kurulum, analiz ve test süreçlerini içeren **uygulamalı bir güvenlik incelemesi** olarak başarıyla gerçekleştirilmiştir. Repo profesyonelliği kapsamında hassas sırlar (`.env`) gizlenmiş ve kod mimarisi modüler hale getirilmiştir.
 
----
 👨‍🏫 Eğitmen Bilgisi
 Instructor: Keyvan Arasteh
 📽️ Proje Demo ve AI Güvenlik Raporu
@@ -198,4 +197,5 @@ Bu proje, Google Antigravity AI kullanılarak kapsamlı bir siber güvenlik dene
 ▶️ Teknik Analiz Videosunu İzle (Demo)
 
 📄 Teknik Siber Dayanıklılık Raporu (AI Generated)
+
 
