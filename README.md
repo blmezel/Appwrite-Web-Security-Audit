@@ -201,8 +201,7 @@ Bu çalışma, sadece teorik değil; kurulum, analiz ve test süreçlerini içer
 
 Bu proje, **Google Antigravity AI** kullanılarak kapsamlı bir siber güvenlik denetiminden geçirilmiştir.
 
-* [▶️ Teknik Analiz Videosunu İzle (Demo)](Video%20Projesi.mp4)
+* [▶️ Teknik Analiz Videosunu İzle (Demo)](demo/Video%20Projesi.mp4)
 * [📄 Teknik Siber Dayanıklılık Raporu (AI Generated)](cyber_resilience_report.md)
 
 ---
-
