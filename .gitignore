@@ -1,0 +1,7 @@
+# Güvenlik ve Çevresel Değişkenler
+.env
+.env.local
+secret.key
+# Node & Loglar
+node_modules/
+npm-debug.log
