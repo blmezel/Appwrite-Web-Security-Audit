@@ -7,6 +7,9 @@
 ![Status](https://img.shields.io/badge/Status-Proposal-yellow)
 
 ---
+🚀 **[CANLI SİBER GÜVENLİK PANELİNİ GÖRÜNTÜLEMEK İÇİN TIKLAYIN](https://blmezel.github.io/Appwrite-Web-Security-Audit/)
+
+
 
 ## 📋 Proje ve Öğrenci Bilgileri
 
