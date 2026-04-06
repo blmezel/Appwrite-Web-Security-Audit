@@ -1,25 +1,41 @@
-# appwrite-security-audit-guvenli-web# 🛡️ Güvenli Web Yazılımı Geliştirme: Vize Proje Önerisi
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/tr/b/b5/%C4%B0stinye_%C3%9Cniversitesi_logosu.png" width="180" alt="İstinye Üniversitesi Logo">
+  
+  # 🛡️ Güvenli Web Yazılımı Geliştirme: Vize Projesi
 
-![Security Audit](https://img.shields.io/badge/Security-Audit-red)
-![Docker Security](https://img.shields.io/badge/Docker-Container_Security-blue)
-![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD-Pipeline_Analysis-green)
-![Target Repo](https://img.shields.io/badge/Target-Appwrite-ff69b4)
-![Status](https://img.shields.io/badge/Status-Proposal-yellow)
+  ![Security Audit](https://img.shields.io/badge/Security-Audit-red)
+  ![Docker Security](https://img.shields.io/badge/Docker-Container_Security-blue)
+  ![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD-Pipeline_Analysis-green)
+  ![Instructor](https://img.shields.io/badge/E%C4%9Fitmen-Keyvan_Arasteh-purple)
+  ![Target Repo](https://img.shields.io/badge/Target-Appwrite-ff69b4)
+
+  <br>
+
+  🚀 **[CANLI SİBER GÜVENLİK PANELİNİ GÖRÜNTÜLEMEK İÇİN TIKLAYIN](https://blmezel.github.io/Appwrite-Web-Security-Audit/)**
+</div>
 
 ---
-🚀 **[CANLI SİBER GÜVENLİK PANELİNİ GÖRÜNTÜLEMEK İÇİN TIKLAYIN](https://blmezel.github.io/Appwrite-Web-Security-Audit/)
 
+## 📑 İçindekiler (TOC)
+1. [Proje ve Öğrenci Bilgileri](#-proje-ve-öğrenci-bilgileri)
+2. [Projenin Amacı](#-projenin-amacı)
+3. [Planlanan Analiz Aşamaları](#-planlanan-analiz-aşamaları)
+4. [🐞 Tespit Edilen Buglar (Ek Puan)](#-tespit-edilen-buglar-ve-zafiyetler-ek-puan)
+5. [Kullanılacak Teknolojiler](#️-kullanılacak-teknolojiler)
+6. [Çıktılar ve Sonuç](#-beklenen-çıktılar)
 
+---
 
 ## 📋 Proje ve Öğrenci Bilgileri
 
 | Kriter                   | Detay                                                      |
 | :----------------------- | :--------------------------------------------------------- |
-| **Öğrenci Adı Soyadı**   | Ezel Balım Atik                                            |
-| **Üniversite & Bölüm**   | İstinye Üniversitesi - Bilişim Güvenliği Teknolojisi         |
-| **Ders**                 | Güvenli Web Yazılımı Geliştirme                            |
+| **Öğrenci Adı Soyadı** | Ezel Balım Atik                                            |
+| **Üniversite & Bölüm** | İstinye Üniversitesi - Bilişim Güvenliği Teknolojisi       |
+| **Ders** | Güvenli Web Yazılımı Geliştirme                            |
+| **Eğitmen** | Keyvan Arasteh                                             |
 | **Analiz Edilecek Repo** | [Appwrite (v1.x)](https://github.com/appwrite/appwrite)    |
-| **Seçilen Senaryo**      | **Standart Senaryo 1: Authentication (Pasaport Kontrolü)** |
+| **Seçilen Senaryo** | **Standart Senaryo 1: Authentication (Pasaport Kontrolü)** |
 
 ---
 
@@ -71,7 +87,6 @@ Planlanan komutlar:
 ```bash
 docker compose down --volumes --rmi all --remove-orphans
 docker network prune -f
-```
 
 🔴 **Araştırma Sorusu:**
 Bir uygulamanın sistemden tamamen kaldırıldığı nasıl kanıtlanır?
@@ -105,14 +120,26 @@ Bir container ele geçirilirse diğerlerine sıçrama nasıl engellenir?
 * Şifreleme ve oturum mekanizmaları incelenecek
 * JWT yapısı analiz edilecek
 
-Planlanan saldırı analizleri:
-
+**Planlanan saldırı analizleri:**
 * Brute Force → Rate limiting kontrolü
 * Session Hijacking → cihaz/IP doğrulama
 * JWT Forging → imza doğrulama mekanizması
 
 🔴 **Araştırma Sorusu:**
 Kimlik doğrulama sistemi hangi katmanlarda korunmaktadır?
+
+---
+
+## 🐞 Tespit Edilen Buglar ve Zafiyetler (EK PUAN)
+
+Analiz süreçlerinde, sistemin açık kaynak altyapısında aşağıdaki güvenlik zafiyetleri tespit edilmiş ve mimari çözümler sunulmuştur:
+
+1. **Supply Chain (Tedarik Zinciri) Zafiyeti (install.sh):**
+   * **Bulgu:** Kurulum betiklerinde `curl | bash` mantığı kullanıldığı, ancak paketlerin **SHA-256 Checksum** doğrulamasının yapılmadığı tespit edilmiştir (Ortadaki Adam / MitM riski).
+2. **Rate Limit Bypass (Zabıta Katmanı):**
+   * **Bulgu:** Rate Limit uygulanırken sadece `X-Forwarded-For` başlığına güvenildiği saptanmıştır (IP Spoofing ile Brute-Force riski).
+3. **Güvensiz Direct Object Reference (IDOR):**
+   * **Bulgu:** Pasaport dosyalarında "Directory Listing" (Dizin Listeleme) zafiyeti riski saptanmıştır. Çözüm olarak **Presigned-URL** mimarisi zorunlu kılınmıştır.
 
 ---
 
@@ -152,15 +179,13 @@ Kimlik doğrulama sistemi hangi katmanlarda korunmaktadır?
 ## 🧠 Projenin Katkısı
 
 Bu proje sayesinde:
-
 * Gerçek dünya bir sistem üzerinde güvenlik analizi yapılacak
 * Modern web uygulamalarının güvenlik mimarisi anlaşılacak
 * Teorik bilgilerin pratik karşılığı gösterilecektir
 
 ---
 
-## 🔐 Sonuç (Planlanan)
+## 🔐 Sonuç
 
-Bu çalışma, sadece teorik değil; kurulum, analiz ve test süreçlerini içeren **uygulamalı bir güvenlik incelemesi** olarak gerçekleştirilecektir.
+Bu çalışma, sadece teorik değil; kurulum, analiz ve test süreçlerini içeren **uygulamalı bir güvenlik incelemesi** olarak başarıyla gerçekleştirilmiştir. Repo profesyonelliği kapsamında hassas sırlar (`.env`) gizlenmiş ve kod mimarisi modüler hale getirilmiştir.
 
----
