@@ -87,6 +87,7 @@ Planlanan komutlar:
 ```bash
 docker compose down --volumes --rmi all --remove-orphans
 docker network prune -f
+```
 
 🔴 **Araştırma Sorusu:**
 Bir uygulamanın sistemden tamamen kaldırıldığı nasıl kanıtlanır?
