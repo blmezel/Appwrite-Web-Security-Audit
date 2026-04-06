@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/tr/b/b5/%C4%B0stinye_%C3%9Cniversitesi_logosu.png" width="180" alt="İstinye Üniversitesi Logo">
-  
+  <img width="320" height="320" alt="istinye-universitesi-logo-png_seeklogo-610039" src="https://github.com/user-attachments/assets/da681d83-2f61-4daf-be78-c01abe656e88" />
+
   # 🛡️ Güvenli Web Yazılımı Geliştirme: Vize Projesi
 
   ![Security Audit](https://img.shields.io/badge/Security-Audit-red)
