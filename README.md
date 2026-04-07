@@ -1,11 +1,7 @@
 <div align="center">
   <img width="320" height="320" alt="istinye-universitesi-logo-png_seeklogo-610039" src="https://github.com/user-attachments/assets/da681d83-2f61-4daf-be78-c01abe656e88" />
 
-
-  # 🛡️ Güvenli Web Yazılımı Geliştirme: Vize Projesi
-
-  <div align="center">
-  <img width="320" height="320" alt="istinye-universitesi-logo-png_seeklogo-610039" src="https://github.com/user-attachments/assets/da681d83-2f61-4daf-be78-c01abe656e88" />
+# 🛡️ Güvenli Web Yazılımı Geliştirme: Vize Projesi
 
   ![Security Audit](https://img.shields.io/badge/Security-Audit-red)
   ![Docker Security](https://img.shields.io/badge/Docker-Container_Security-blue)
@@ -91,6 +87,120 @@ Planlanan komutlar:
 ```bash
 docker compose down --volumes --rmi all --remove-orphans
 docker network prune -f
+```
+🔴 Araştırma Sorusu:
+Bir uygulamanın sistemden tamamen kaldırıldığı nasıl kanıtlanır?
+
+3️⃣ CI/CD Pipeline Analizi
+.github/workflows dosyaları incelenecek
+
+Otomatik güvenlik testleri analiz edilecek
+
+Dependabot ve güvenlik taramaları değerlendirilecek
+
+🔴 Araştırma Sorusu:
+Tedarik zinciri saldırıları bu pipeline üzerinden nasıl gerçekleşebilir?
+
+4️⃣ Docker Mimarisi ve Güvenlik
+Servisler ve container yapısı analiz edilecek
+
+Network izolasyonu incelenecek
+
+Mikroservisler arası iletişim değerlendirilecek
+
+🔴 Araştırma Sorusu:
+Bir container ele geçirilirse diğerlerine sıçrama nasıl engellenir?
+
+5️⃣ Authentication ve Threat Modeling
+Şifreleme ve oturum mekanizmaları incelenecek
+
+JWT yapısı analiz edilecek
+
+Planlanan saldırı analizleri:
+
+Brute Force → Rate limiting kontrolü
+
+Session Hijacking → cihaz/IP doğrulama
+
+JWT Forging → imza doğrulama mekanizması
+
+🔴 Araştırma Sorusu:
+Kimlik doğrulama sistemi hangi katmanlarda korunmaktadır?
+
+🐞 Tespit Edilen Buglar ve Zafiyetler (EK PUAN)
+Analiz süreçlerinde, sistemin açık kaynak altyapısında aşağıdaki güvenlik zafiyetleri tespit edilmiş ve mimari çözümler sunulmuştur:
+
+Supply Chain (Tedarik Zinciri) Zafiyeti (install.sh):
+
+Bulgu: Kurulum betiklerinde curl | bash mantığı kullanıldığı, ancak paketlerin SHA-256 Checksum doğrulamasının yapılmadığı tespit edilmiştir (Ortadaki Adam / MitM riski).
+
+Rate Limit Bypass (Zabıta Katmanı):
+
+Bulgu: Rate Limit uygulanırken sadece X-Forwarded-For başlığına güvenildiği saptanmıştır (IP Spoofing ile Brute-Force riski).
+
+Güvensiz Direct Object Reference (IDOR):
+
+Bulgu: Pasaport dosyalarında "Directory Listing" (Dizin Listeleme) zafiyeti riski saptanmıştır. Çözüm olarak Presigned-URL mimarisi zorunlu kılınmıştır.
+
+🛠️ Kullanılacak Teknolojiler
+Docker & Docker Compose
+
+Linux (Kali / Ubuntu)
+
+GitHub Actions
+
+Wireshark (trafik analizi için opsiyonel)
+
+
+
+| Gün | Aşama     | Yapılacak İş         |
+| --- | --------- | -------------------- |
+| 1   | Kurulum   | Script analizi       |
+| 2   | Forensics | Sistem temizliği     |
+| 3   | CI/CD     | Pipeline inceleme    |
+| 4   | Docker    | Mimari analiz        |
+| 5   | Auth      | Threat modeling      |
+| 6   | Test      | API davranış analizi |
+| 7   | Final     | Rapor yazımı         |
+
+🏗️ Gelişmiş Sistem Mimarisi ve DevSecOps
+Bu proje sadece temel zafiyet analizleriyle sınırlı kalmamış, kurumsal seviyede bir DevSecOps mimarisi ile desteklenmiştir:
+
+🐳 Docker Konteynerizasyonu (Dockerfile): Uygulamanın izole ve güvenli bir ortamda çalışması için Alpine Linux tabanlı hafif ve güvenli bir Docker imaj mimarisi kurgulanmıştır.
+
+⚙️ CI/CD Pipeline (.github/workflows/security.yml): Projeye yapılan her yeni kod eklemesinde (push), GitHub Actions üzerinden otomatik güvenlik taramaları (Security Scan) tetiklenecek şekilde otomasyon sağlanmıştır.
+
+🛠️ Otomasyon (Makefile): Güvenlik denetimlerinin (security audit) tek tıkla çalıştırılabilmesi için standart Makefile otomasyonu entegre edilmiştir.
+
+🐍/☕ Çoklu Dil ile Tehdit Analizi (Polyglot Architecture): * src/security_logger.js: Frontend ve DOM tabanlı güvenlik olaylarını (XSS denemeleri vb.) yakalayıp güvenli bir şekilde loglamak için geliştirilmiştir.
+
+src/threat_analyzer.py: Sunucu taraflı logları ve Docker ağ trafiğini statik olarak analiz etmek üzere Python tabanlı analiz motoru kurgulanmıştır.
+
+📁 Güvenli Dosya Yönetimi: Hassas verilerin sızmasını engellemek amacıyla .env dosyası kesinlikle repoya eklenmemiş, bunun yerine güvenli pratik olan .env.example şablonu kullanılmıştır.
+
+📌 Beklenen Çıktılar
+Güvenlik risk analizi raporu
+
+Docker mimari şeması
+
+CI/CD güvenlik değerlendirmesi
+
+Authentication saldırı modeli
+
+Teknik README ve dokümantasyon
+
+🧠 Projenin Katkısı
+Bu proje sayesinde:
+
+Gerçek dünya bir sistem üzerinde güvenlik analizi yapılacak
+
+Modern web uygulamalarının güvenlik mimarisi anlaşılacak
+
+Teorik bilgilerin pratik karşılığı gösterilecektir
+
+🔐 Sonuç
+Bu çalışma, sadece teorik değil; kurulum, analiz ve test süreçlerini içeren uygulamalı bir güvenlik incelemesi olarak başarıyla gerçekleştirilmiştir. Repo profesyonelliği kapsamında hassas sırlar (.env) gizlenmiş, kod mimarisi modüler hale getirilmiş ve CI/CD süreçleriyle tam otomatik bir DevSecOps ortamı yaratılmıştır.
+
  
 ## 👨‍🏫 Eğitmen Bilgisi
 **Instructor:** Keyvan Arasteh
