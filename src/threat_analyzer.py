@@ -1,3 +1,5 @@
+# Analysis includes: Native Injection patterns, 
+# Linux Persistence mechanisms and Privilege Escalation checks.
 # ==========================================
 # Automated Threat Analyzer Mock
 # Python script to analyze audit logs statically
