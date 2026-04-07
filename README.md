@@ -1,7 +1,11 @@
 <div align="center">
   <img width="320" height="320" alt="istinye-universitesi-logo-png_seeklogo-610039" src="https://github.com/user-attachments/assets/da681d83-2f61-4daf-be78-c01abe656e88" />
 
+
   # 🛡️ Güvenli Web Yazılımı Geliştirme: Vize Projesi
+
+  <div align="center">
+  <img width="320" height="320" alt="istinye-universitesi-logo-png_seeklogo-610039" src="https://github.com/user-attachments/assets/da681d83-2f61-4daf-be78-c01abe656e88" />
 
   ![Security Audit](https://img.shields.io/badge/Security-Audit-red)
   ![Docker Security](https://img.shields.io/badge/Docker-Container_Security-blue)
@@ -22,7 +26,8 @@
 3. [Planlanan Analiz Aşamaları](#-planlanan-analiz-aşamaları)
 4. [🐞 Tespit Edilen Buglar (Ek Puan)](#-tespit-edilen-buglar-ve-zafiyetler-ek-puan)
 5. [Kullanılacak Teknolojiler](#️-kullanılacak-teknolojiler)
-6. [Çıktılar ve Sonuç](#-beklenen-çıktılar)
+6. [Gelişmiş Sistem Mimarisi ve DevSecOps](#️-gelişmiş-sistem-mimarisi-ve-devsecops)
+7. [Çıktılar ve Sonuç](#-sonuç)
 
 ---
 
@@ -66,7 +71,6 @@ Proje kapsamında özellikle aşağıdaki saldırı türlerine karşı sistemin 
 * `install.sh` scripti incelenecek
 * Körlemesine çalıştırma (curl | bash) riskleri değerlendirilecek
 * Scriptin:
-
   * Dosya sistemi değişiklikleri
   * Yetki kullanımı
   * Dış bağımlılıkları
@@ -87,111 +91,7 @@ Planlanan komutlar:
 ```bash
 docker compose down --volumes --rmi all --remove-orphans
 docker network prune -f
-```
-
-🔴 **Araştırma Sorusu:**
-Bir uygulamanın sistemden tamamen kaldırıldığı nasıl kanıtlanır?
-
----
-
-### 3️⃣ CI/CD Pipeline Analizi
-
-* `.github/workflows` dosyaları incelenecek
-* Otomatik güvenlik testleri analiz edilecek
-* Dependabot ve güvenlik taramaları değerlendirilecek
-
-🔴 **Araştırma Sorusu:**
-Tedarik zinciri saldırıları bu pipeline üzerinden nasıl gerçekleşebilir?
-
----
-
-### 4️⃣ Docker Mimarisi ve Güvenlik
-
-* Servisler ve container yapısı analiz edilecek
-* Network izolasyonu incelenecek
-* Mikroservisler arası iletişim değerlendirilecek
-
-🔴 **Araştırma Sorusu:**
-Bir container ele geçirilirse diğerlerine sıçrama nasıl engellenir?
-
----
-
-### 5️⃣ Authentication ve Threat Modeling
-
-* Şifreleme ve oturum mekanizmaları incelenecek
-* JWT yapısı analiz edilecek
-
-**Planlanan saldırı analizleri:**
-* Brute Force → Rate limiting kontrolü
-* Session Hijacking → cihaz/IP doğrulama
-* JWT Forging → imza doğrulama mekanizması
-
-🔴 **Araştırma Sorusu:**
-Kimlik doğrulama sistemi hangi katmanlarda korunmaktadır?
-
----
-
-## 🐞 Tespit Edilen Buglar ve Zafiyetler (EK PUAN)
-
-Analiz süreçlerinde, sistemin açık kaynak altyapısında aşağıdaki güvenlik zafiyetleri tespit edilmiş ve mimari çözümler sunulmuştur:
-
-1. **Supply Chain (Tedarik Zinciri) Zafiyeti (install.sh):**
-   * **Bulgu:** Kurulum betiklerinde `curl | bash` mantığı kullanıldığı, ancak paketlerin **SHA-256 Checksum** doğrulamasının yapılmadığı tespit edilmiştir (Ortadaki Adam / MitM riski).
-2. **Rate Limit Bypass (Zabıta Katmanı):**
-   * **Bulgu:** Rate Limit uygulanırken sadece `X-Forwarded-For` başlığına güvenildiği saptanmıştır (IP Spoofing ile Brute-Force riski).
-3. **Güvensiz Direct Object Reference (IDOR):**
-   * **Bulgu:** Pasaport dosyalarında "Directory Listing" (Dizin Listeleme) zafiyeti riski saptanmıştır. Çözüm olarak **Presigned-URL** mimarisi zorunlu kılınmıştır.
-
----
-
-## 🛠️ Kullanılacak Teknolojiler
-
-* Docker & Docker Compose
-* Linux (Kali / Ubuntu)
-* GitHub Actions
-* Wireshark (trafik analizi için opsiyonel)
-
----
-
-## 📅 Planlanan Çalışma Takvimi
-
-| Gün | Aşama     | Yapılacak İş         |
-| --- | --------- | -------------------- |
-| 1   | Kurulum   | Script analizi       |
-| 2   | Forensics | Sistem temizliği     |
-| 3   | CI/CD     | Pipeline inceleme    |
-| 4   | Docker    | Mimari analiz        |
-| 5   | Auth      | Threat modeling      |
-| 6   | Test      | API davranış analizi |
-| 7   | Final     | Rapor yazımı         |
-
----
-
-## 📌 Beklenen Çıktılar
-
-* Güvenlik risk analizi raporu
-* Docker mimari şeması
-* CI/CD güvenlik değerlendirmesi
-* Authentication saldırı modeli
-* Teknik README ve dokümantasyon
-
----
-
-## 🧠 Projenin Katkısı
-
-Bu proje sayesinde:
-* Gerçek dünya bir sistem üzerinde güvenlik analizi yapılacak
-* Modern web uygulamalarının güvenlik mimarisi anlaşılacak
-* Teorik bilgilerin pratik karşılığı gösterilecektir
-
----
-
-## 🔐 Sonuç
-
-Bu çalışma, sadece teorik değil; kurulum, analiz ve test süreçlerini içeren **uygulamalı bir güvenlik incelemesi** olarak başarıyla gerçekleştirilmiştir. Repo profesyonelliği kapsamında hassas sırlar (`.env`) gizlenmiş ve kod mimarisi modüler hale getirilmiştir.
-
----
-
+ 
 ## 👨‍🏫 Eğitmen Bilgisi
 **Instructor:** Keyvan Arasteh
 
